@@ -33,10 +33,10 @@ def main():
 	# Determine k = n^0.5
 	k = int(math.pow(len(data.index), 0.5))
 
-	#test_data_knn, accuracy_knn = knn.KNN(test_data, train_data, features, target_col_name, k)
+	test_data_knn, accuracy_knn = knn.KNN(test_data, train_data, features, target_col_name, k)
 	test_data_bayes, accuracy_bayes = bayes.gaussian_naive_bayes(test_data, train_data, features, target_col_name)
 
-	#print('KNN accuracy: ' + str(accuracy_knn))
+	print('KNN accuracy: ' + str(accuracy_knn))
 	print('Gaussian naive bayes accuracy: ' + str(accuracy_bayes))
 
 if __name__ == '__main__':
