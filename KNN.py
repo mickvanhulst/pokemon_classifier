@@ -22,10 +22,10 @@ def det_nearest_neighbors(train_data, test_data, test_point, features, k):
 	dist_dict = {}
 
 	for train_point in train_data.index:
-
+		# Set index of training point plus euclidean distance
 		dist_dict[train_point] = calc_euclidean(train_data, test_data, train_point, test_point, features)
 
-	#dict_top_k = sorted(dist_dict.items(), key=operator.itemgetter(1), reverse=True)[:k]
+	# Get k highest values
 	dict_top_k = sorted(dist_dict, key=dist_dict.get, reverse=True)[:k]
 
 	return dict_top_k
