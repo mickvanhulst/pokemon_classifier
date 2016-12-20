@@ -16,9 +16,10 @@ def main():
 	data = pd.read_csv("./Pokemon.csv")
 	# Determine target
 	target_col_name = 'Type 1'
-	#print(data)
 
-	# Features
+	# Features 
+	# I decided not to use 'Legendary' & 'Generation' because the variation is to low. 
+	# Classes like 'Bug' do not have a legendary card which results in an error: 'Divide by zero error'.
 	features = ['Total', 'HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed']
 
 	# Split test/training dataset
@@ -32,10 +33,10 @@ def main():
 	# Determine k = n^0.5
 	k = int(math.pow(len(data.index), 0.5))
 
-	test_data_knn, accuracy_knn = knn.KNN(test_data, train_data, features, target_col_name, k)
+	#test_data_knn, accuracy_knn = knn.KNN(test_data, train_data, features, target_col_name, k)
 	test_data_bayes, accuracy_bayes = bayes.gaussian_naive_bayes(test_data, train_data, features, target_col_name)
 
-	print('KNN accuracy: ' + str(accuracy_knn))
+	#print('KNN accuracy: ' + str(accuracy_knn))
 	print('Gaussian naive bayes accuracy: ' + str(accuracy_bayes))
 
 if __name__ == '__main__':

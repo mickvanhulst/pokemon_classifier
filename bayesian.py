@@ -24,14 +24,12 @@ def calc_mean_var(train_data, features, target_col_name):
 	return class_dict
 
 def calc_probability(x, mean, stdev):
-	if(stdev == 0):
-		print(x)
 	exponent = math.exp(-(math.pow(x-mean,2)/(2*math.pow(stdev,2))))
 	return (1 / (math.sqrt(2*math.pi) * stdev)) * exponent
 
 def det_classes_gaus(class_dict, test_data, train_data, target_col_name, features):
 	# Loop through test dataset
-	for row in range(len(test_data)):
+	for idx in test_data.index:
 		# Init list of chances
 		chances = {}
 		# Loop through all classes
@@ -40,20 +38,19 @@ def det_classes_gaus(class_dict, test_data, train_data, target_col_name, feature
 			chance = 1
 			for feature in features:
 				# Determine index pos of feature
-				feature_pos = train_data.columns.get_loc(feature)
+				#feature_pos = train_data.columns.get_loc(feature)
 				mean = class_dict[class_name][feature][0]
 				std = class_dict[class_name][feature][1]
-				
-				chance += np.log(calc_probability(test_data.iloc[row, feature_pos], mean, std))
+
+				if(std == 0.0):
+					test_data.loc[idx, feature]
+				chance += np.log(calc_probability(test_data.loc[idx, feature], mean, std))
 
 			# Append chance per class
 			chances[class_name] = chance
 
-		# Classify column index number
-		index_classify_col = test_data.columns.get_loc('classify')
-
 		# Append class with highest chance
-		test_data.iloc[row, index_classify_col] = max(chances, key=chances.get)
+		test_data.loc[idx, 'classify'] = max(chances, key=chances.get)
 
 	# determine accuracy
 	len_classify_equals_target = len(test_data[test_data[target_col_name] == test_data['classify']].index) 
