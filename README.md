@@ -10,8 +10,8 @@ I've created two classifiers, Gaussian Naive Bayes and KNN. On average the Gauss
 #Conclusion
 After reading [this](https://www.kaggle.com/residentmario/d/abcsds/pokemon/classifying-pokemon-type-by-stat-allocation)
 and failing to classify with a decent accuracy, I'd like to conclude that there is most likely
-no relationship between the choosen features and the type. If there is, then I made some
-mistake, which this would be a mayor learning point for me :).
+no relationship between the choosen features and the type. If there is, then I made some kind of
+mistake:).
 
 #Credits
 Credits go to [Jason Baldridge](https://github.com/jasonbaldridge). I've merely created a wrapper to get people started. 
